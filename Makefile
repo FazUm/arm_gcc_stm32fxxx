@@ -7,6 +7,9 @@ PROJECT_NAME := Blinky
 DEBUG := y
 OPTIM ?= O0
 
+#USER SELECTION
+USERSTM		:= STM32F767xx
+
 ##############################################################################
 # TOOLCHAIN SET
 TOOLCHAIN_DIR 	:= /home/pedro/.toolchain/gcc-arm-none-eabi-10.3-2021.07/bin/
@@ -40,7 +43,7 @@ MCUFLAGS	+= -mthumb
 # STM DEFINES
 BDEFS 	:= -DSTM32 
 BDEFS	+= -DSTM32F7 
-BDEFS	+= -DSTM32F767xx 
+BDEFS	+= -D$(USERSTM)
 BDEFS	+= -DUSE_HAL_DRIVER
 BDEFS	+= -DUSE_FULL_LL_DRIVERS
 
@@ -70,14 +73,13 @@ LDFLAGS 	+= -specs=nosys.specs
 ##############################################################################
 # CODE DIRS
 DRIVERSDIR	:= drivers
-MCU  := stm32f767xx
 
 BASEDIR 	:= $(abspath .)
 SRCDIR		:= $(BASEDIR)/src
 USRDIR 		:= $(SRCDIR)/user
 ARCHDIR 	:= $(SRCDIR)/arch
 PLATDIR		:= $(SRCDIR)/platform
-STMDIR		:= $(ARCHDIR)/$(MCU)
+STMDIR		:= $(ARCHDIR)/$(USERSTM)
 HALDIR 		:= $(PLATDIR)/$(DRIVERSDIR)
 HALLEGDIR	:= $(HALDIR)/inc
 CMSISDIR 	:= $(SRCDIR)/cmsis
