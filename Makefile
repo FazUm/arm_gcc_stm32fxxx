@@ -1,18 +1,22 @@
 ##############################################################################
+############################# USER CONFIGURATIONS ############################
+
 # PROJECT NAME
 PROJECT_NAME := Blinky
 
-##############################################################################
 # ARGUMENTS
 DEBUG := y
 OPTIM ?= O0
 
-#USER SELECTION
-USERSTM		:= STM32F767xx
+# STM
+USERSTM	:= STM32F767xx
+
+# TOOLCHAIN DIRECTORY
+USER_TOOLCHAIN_DIR	:= /home/pedro/.toolchain/gcc-arm-none-eabi-10.3-2021.07/
 
 ##############################################################################
 # TOOLCHAIN SET
-TOOLCHAIN_DIR 	:= /home/pedro/.toolchain/gcc-arm-none-eabi-10.3-2021.07/bin/
+TOOLCHAIN_DIR 	:= $(USER_TOOLCHAIN_DIR)/bin/
 TOOLCHAIN 		:= arm-none-eabi-
 CROSS_COMPILE 	?= $(addprefix $(TOOLCHAIN_DIR),$(TOOLCHAIN))
 
