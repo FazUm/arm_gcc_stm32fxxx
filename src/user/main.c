@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 #include "main.h"
 
 #define CTREE
@@ -16,12 +17,15 @@ void leds_blink(){
 int main(void)
 {
   plat_init();
+  plat_uart_init();
 
   BSP_LED_Init(LED_GREEN);
   BSP_LED_Init(LED_BLUE);
   BSP_LED_Init(LED_RED);
 
-
+  char *msg = "Hello world!\n\r";
+ 
+  HAL_UART_Transmit(&uart3, (uint8_t*)msg, strlen(msg), 0xFFFF);
   while (1)
   {
 
