@@ -26,6 +26,8 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 
 //redefine putc f
 int fputc(int ch, FILE *f){
+
 	HAL_UART_Transmit(&uart3, (uint8_t*)&ch, 1, 100);
 	return ch;
+
 }

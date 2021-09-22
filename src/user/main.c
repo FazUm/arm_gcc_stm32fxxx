@@ -26,6 +26,9 @@ int main(void)
   char *msg = "Hello world!\n\r";
  
   HAL_UART_Transmit(&uart3, (uint8_t*)msg, strlen(msg), 0xFFFF);
+
+  printf("Hello There\r\n");
+
   while (1)
   {
 
