@@ -14,6 +14,9 @@ USERSTM	:= STM32F767xx
 # TOOLCHAIN DIRECTORY
 USER_TOOLCHAIN_DIR	:= /home/pedro/.toolchain/gcc-arm-none-eabi-10.3-2021.07/
 
+#FLASHTOOL
+FLASHTOOL	:= pyocd
+
 ##############################################################################
 # TOOLCHAIN SET
 TOOLCHAIN_DIR 	:= $(USER_TOOLCHAIN_DIR)/bin/
@@ -129,7 +132,7 @@ ELF := $(BINDIR)/$(PROJECT_NAME).elf
 HEX := $(BINDIR)/$(PROJECT_NAME).hex
 
 #BUILD RULES
-.PHONY: all clean
+.PHONY: all clean run debug
 
 all: $(HEX)
 
@@ -138,6 +141,11 @@ clean:
 	@rm -rf $(BINDIR) 
 	@echo "Project cleaned!"
 
+run: $(HEX)
+	@./flash.sh $<
+
+debug:
+	@$(FLASHTOOL) gdbserver
 ################################################################################
 # Rule to create the ELF file
 $(ELF): $(objs-y)
