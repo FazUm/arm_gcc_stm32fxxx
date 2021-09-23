@@ -10,7 +10,8 @@ void leds_blink(){
 
   BSP_LED_Toggle(state);
 
-  state = (++state & 0x03);
+  ++state; 
+  state &= 0x03;
 
 }
 

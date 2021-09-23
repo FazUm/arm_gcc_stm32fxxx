@@ -1,5 +1,4 @@
-#include "stm32f7xx.h"
-#include "stm32f7xx_hal.h"
+#include "nucleo_configs.h"
 
 #define STLK_RX_Pin GPIO_PIN_8
 #define STLK_TX_Pin GPIO_PIN_9

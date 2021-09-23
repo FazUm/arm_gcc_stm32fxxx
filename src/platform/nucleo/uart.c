@@ -1,5 +1,4 @@
-#include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_uart.h"
+#include "stm32f7xx.h"
 #include "uart.h"
 
 uint8_t UART_BUFFER[UART_BUFFER_SIZE] = {0};
