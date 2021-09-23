@@ -1,6 +1,6 @@
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_hal_msp.h"
-#include "plat_init.h"
+#include "plat.h"
 
 void plat_init(void)
 {

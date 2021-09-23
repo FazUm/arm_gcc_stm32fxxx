@@ -135,7 +135,7 @@ ELF := $(BINDIR)/$(PROJECT_NAME).elf
 HEX := $(BINDIR)/$(PROJECT_NAME).hex
 
 #BUILD RULES
-.PHONY: all clean run debug
+.PHONY: all clean run debug erase
 
 all: $(HEX)
 
@@ -149,6 +149,9 @@ run: $(HEX)
 
 debug:
 	@$(FLASHTOOL) gdbserver
+
+erase:
+	@$(FLASHTOOL) erase --mass
 ################################################################################
 # Rule to create the ELF file
 $(ELF): $(objs-y)

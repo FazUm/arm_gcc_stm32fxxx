@@ -2,10 +2,18 @@
 #include "stm32f7xx_hal_uart.h"
 #include "uart.h"
 
+uint8_t UART_BUFFER[UART_BUFFER_SIZE] = {0};
+volatile uint8_t UART_INDEX = 0;
+
 void nucleo_144_uart_init()
 {
+    //ENABLE UART
     HAL_UART_Init(&uart3);
+    //ENABLE THE UART INTERRUPT
+    HAL_UART_Receive_IT(&uart3, &UART_BUFFER[UART_INDEX], 1);
 }
+
+
 
 void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 {

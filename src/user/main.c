@@ -25,8 +25,10 @@ int main(void)
 
   char *msg = "Hello world!\n\r";
   printf("%s", msg);
- 
 
+  float pi = 3.14;
+  printf("%f\n\r", pi);
+  
   while (1)
   {
 
@@ -40,4 +42,6 @@ int main(void)
   }
 
 }
+
+
 
