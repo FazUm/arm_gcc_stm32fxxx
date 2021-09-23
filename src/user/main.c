@@ -28,7 +28,7 @@ int main(void)
 
   float pi = 3.14;
   printf("%f\n\r", pi);
-  
+
   while (1)
   {
 

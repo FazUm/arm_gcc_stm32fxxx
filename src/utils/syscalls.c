@@ -33,7 +33,7 @@ int _read(int file, char *data, int len)
 
     for (bytes_read = 0; bytes_read < len; bytes_read++)
     {
-        HAL_UART_Transmit(&uart3, (uint8_t*)data, len, 1000);
+        HAL_UART_Receive(&uart3, (uint8_t*)data, len, 1000);
         data++;
     }
 
