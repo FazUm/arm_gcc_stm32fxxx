@@ -57,9 +57,9 @@ BDEFS	+= -DUSE_FULL_LL_DRIVERS
 ##############################################################################
 # CC FLAG
 CFLAGS		:= -c -$(OPTIM)
-CFLAGS		+= -Wall -Wextra --pedantic
+CFLAGS		+= -Wall -Wextra --pedantic --specs=nano.specs
 CFLAGS		+= -std=c11
-CFLAGS		+= -fdata-sections -ffunction-sections
+CFLAGS		+= -fdata-sections -ffunction-sections -u printf_float
 
 CFLAGS 		+= $(MCUFLAGS)
 CFLAGS		+= $(BDEFS)
@@ -76,6 +76,7 @@ LDSCRIPT = linkerfile.ld
 LDFLAGS 	:= -T$(LDSCRIPT)
 LDFLAGS 	+= -static $(MCUFLAGS)
 LDFLAGS 	+= -specs=nosys.specs
+# LDFLAGS 	+= -specs=nano.specs
 
 ##############################################################################
 # CODE DIRS
@@ -91,8 +92,9 @@ HALDIR 		:= $(PLATDIR)/$(DRIVERSDIR)
 HALLEGDIR	:= $(HALDIR)/inc
 CMSISDIR 	:= $(SRCDIR)/cmsis
 NUCLEODIR	:= $(PLATDIR)/nucleo
+UTILSDIR	:= $(SRCDIR)/utils
 
-CODE_DIRS := $(STMDIR) $(ARCHDIR) $(HALDIR) $(NUCLEODIR) $(PLATDIR) $(USRDIR)
+CODE_DIRS := $(STMDIR) $(ARCHDIR) $(HALDIR) $(NUCLEODIR) $(PLATDIR) $(USRDIR) $(UTILSDIR)
 
 export $(HALDIR) $(NUCLEODIR) $(DRIVERSDIR)
 
@@ -118,7 +120,8 @@ objs-y 	:=
 objs-y	+= $(addprefix $(STMDIR)/,  $(stm-objs-y))
 objs-y	+= $(addprefix $(ARCHDIR)/, $(arch-objs-y))
 objs-y	+= $(addprefix $(PLATDIR)/, $(plat-objs-y))
-objs-y	+= $(addprefix $(USRDIR)/, $(usr-objs-y))
+objs-y	+= $(addprefix $(USRDIR)/, 	$(usr-objs-y))
+objs-y	+= $(addprefix $(UTILSDIR)/,$(utils-objs-y))
 
 deps   += $(patsubst %.o,%.d,$(objs-y))
 objs-y	:= $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(objs-y))

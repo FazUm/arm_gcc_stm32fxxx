@@ -1,0 +1,1 @@
+utils-objs-y	:= syscalls.o

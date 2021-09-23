@@ -24,10 +24,8 @@ int main(void)
   BSP_LED_Init(LED_RED);
 
   char *msg = "Hello world!\n\r";
+  printf("%s", msg);
  
-  HAL_UART_Transmit(&uart3, (uint8_t*)msg, strlen(msg), 0xFFFF);
-
-  printf("Hello There\r\n");
 
   while (1)
   {
